@@ -14,7 +14,7 @@ const io = new Server(server, {
 	// const connection = await db();
 	require('./config/io')(io);
 
-	const { port } = process.env;
+	const port = process.env.PORT || 5000;
 	server.listen(port, () => {
 		debug(`Server running on port ${port}`);
 	});
