@@ -8,13 +8,13 @@ const io = new Server(server, {
 	maxHttpBufferSize: 20 * 1e6,
 });
 
-const db = require('./config/db');
+// const db = require('./config/db');
 
 (async () => {
 	// const connection = await db();
 	require('./config/io')(io);
 
-	const port = process.env.port || 5000;
+	const { port } = process.env;
 	server.listen(port, () => {
 		debug(`Server running on port ${port}`);
 	});
