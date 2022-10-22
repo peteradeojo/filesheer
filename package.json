@@ -11,7 +11,8 @@
     "build-dev": "webpack --mode development --watch",
     "build-prod": "webpack --mode production",
     "build:css": "sass src/files/:public/css --style=compressed",
-    "start": "npm run build:css & npm run build-prod & node server"
+    "build": "npm run build-prod && npm run build:css",
+    "start": "node server"
   },
   "keywords": [],
   "author": "",
