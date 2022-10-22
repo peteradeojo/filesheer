@@ -1,0 +1,7 @@
+$headingFontSize: 14px;
+
+@for $i from 1 through 5 {
+  .h-#{$i} {
+    font-size: $headingFontSize * $i;
+  }
+}

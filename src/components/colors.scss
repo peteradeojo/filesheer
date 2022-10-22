@@ -1,0 +1,12 @@
+$themeColor: green;
+
+.bg-theme {
+  background-color: $themeColor;
+  color: #fff;
+}
+.text-theme {
+  color: $themeColor;
+}
+.bordered {
+  border: 2px solid $themeColor;
+}

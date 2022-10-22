@@ -1,0 +1,19 @@
+$padding: 4px;
+
+@for $i from 0 through 5 {
+  .p-#{$i} {
+    padding: $padding * $i;
+  }
+  .pt-#{$i} {
+    padding-top: $padding * $i;
+  }
+  .pb-#{$i} {
+    padding-bottom: $padding * $i;
+  }
+  .pl-#{$i} {
+    padding-left: $padding * $i;
+  }
+  .pr-#{$i} {
+    padding-right: $padding * $i;
+  }
+}
