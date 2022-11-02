@@ -23,10 +23,27 @@ body {
   align-items: stretch;
   align-content: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+  li {
+    padding: 4px;
+    &:hover {
+      background-color: #ccc;
+    }
+  }
 }
 
 @for $i from 1 through 12 {
   .col-#{$i} {
     width: calc(($i/12) * 100%);
+  }
+}
+
+@media screen and (max-width: 468px) {
+  [class*="col-"] {
+    width: 100%;
   }
 }

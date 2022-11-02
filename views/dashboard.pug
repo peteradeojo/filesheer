@@ -5,11 +5,11 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="/css/index.css")
-    title FileShare
+    title Sheer
   body 
     main 
       .container
-        h1.h-3 Hello
+        h1.h-3 Sheer
       .container
         h3#name-display
         p Set your Room Name
@@ -17,11 +17,11 @@ html(lang="en")
         button#set-room Set Room
       .container
         .row
-          .col-6.bordered
+          .col-6.pt-5.pb-5
             form#file-input
               input(type="file" name="file")
               button#share-btn(type="submit").btn Share
-          .col-6.bordered 
+          .col-6.pt-3.pb-3.border-top
             ul#file-list
 
     script(src="/js/bundle.js" defer) 
