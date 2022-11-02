@@ -1,5 +1,9 @@
 const { io } = require('socket.io-client');
 
+const { updateDisplayName } = require('./state');
+
+const setRoomInput = document.querySelector('#set-room-input');
+
 function arrayBufferToBase64(Arraybuffer, Filetype, fileName) {
 	let url = '';
 	if (Filetype in ['video/x-matroska', 'audio/mp3', 'video/mp4']) {
@@ -43,25 +47,24 @@ function arrayBufferToBase64(Arraybuffer, Filetype, fileName) {
 	// document.body.appendChild(a);
 	return a;
 }
-
-const username = 'johndoe';
-
-const state = {
+window.state = {
 	registered: false,
 	username: undefined,
+	name_display: document.querySelector('#name-display'),
 };
+
+const { state } = window;
 
 const socket = io();
 
 socket.on('connect', () => {
-	socket.emit('register', username);
 	socket.on('registered', (result) => {
-		if (result) {
+		if (result !== false) {
 			state.registered = true;
-			state.username = username;
+			state.username = result;
 		}
 
-		console.log(state);
+		updateDisplayName();
 	});
 
 	socket.on('file-shared', (file) => {
@@ -77,6 +80,12 @@ socket.on('connect', () => {
 
 document.querySelector('#file-input')?.addEventListener('submit', async (e) => {
 	e.preventDefault();
+
+	if (window.state.registered !== true || !window.state.username) {
+		alert('Cannot share files without a registered username');
+		return undefined;
+	}
+
 	const form = e.target;
 	/**
 	 * @type File
@@ -104,4 +113,16 @@ document.querySelector('#file-input')?.addEventListener('submit', async (e) => {
 	});
 
 	return undefined;
+});
+
+document.querySelector('#set-room')?.addEventListener('click', () => {
+	const value = setRoomInput?.value;
+
+	if (value) {
+		socket.emit('register', value);
+	} else {
+		state.registered = false;
+		state.username = undefined;
+		alert('Cannot share files without a registered username');
+	}
 });

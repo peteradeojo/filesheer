@@ -10,7 +10,11 @@ html(lang="en")
     main 
       .container
         h1.h-3 Hello
-      
+      .container
+        h3#name-display
+        p Set your Room Name
+        input#set-room-input(type="text")
+        button#set-room Set Room
       .container
         .row
           .col-6.bordered
@@ -20,4 +24,4 @@ html(lang="en")
           .col-6.bordered 
             ul#file-list
 
-    script(src="/js/bundle.js") 
+    script(src="/js/bundle.js" defer) 
