@@ -6,7 +6,7 @@ module.exports = (io) => {
 	io.on('connect', (socket) => {
 		socket.on('register', (username) => {
 			const room = rooms.find((roomy) => roomy.username === username);
-			if (room.count >= 16) {
+			if (room?.count >= 16) {
 				socket.emit('fail', { message: 'Too many users on this channel' });
 				return undefined;
 			}
