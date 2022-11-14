@@ -1,4 +1,4 @@
-const debug = require('debug')('server:io-config');
+// const debug = require('debug')('server:io-config');
 
 module.exports = (io) => {
 	const rooms = [];
@@ -17,14 +17,15 @@ module.exports = (io) => {
 				room.count += 1;
 			}
 
-			rooms.forEach((room) => {
-				if (room.username !== username) {
-					socket.leave(room.username);
+			rooms.forEach((r) => {
+				if (r.username !== username) {
+					socket.leave(r.username);
 				}
 			});
 
 			socket.join(username);
 			socket.emit('registered', username);
+			return undefined;
 		});
 
 		socket.on('share', (state, data) => {
